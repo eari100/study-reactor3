@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id "io.spring.dependency-management" version "1.0.7.RELEASE"
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "io.projectreactor:reactor-bom:2022.0.9"
+    }
+}
+
+dependencies {
+    implementation platform('io.projectreactor:reactor-bom:2022.0.9')
+    implementation 'io.projectreactor:reactor-core'
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+repositories {
+    maven { url 'https://repo.spring.io/milestone' }
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+}
